@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Modern Admin Dashboard</title>
+    <link rel="stylesheet" href="style_account.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body >
+   <input type="checkbox" id="menu-toggle">
+    <div class="sidebar">
+        <div class="side-header">
+            <h3><i class="fas fa-book-reader mr-5"></i><span>  EDUKATE</span></h3>
+        </div>
+        
+        <div class="side-content">
+            <div class="profile">
+                <div class="profile-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                <h4>David Green</h4>
+                <small>Art Director</small>
+            </div>
+
+            <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="/Admin-Dashboard-Modern-master/index.html" >
+                            <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="/Admin-Dashboard-Modern-master/account.html" class="active">
+                            <span class="las la-user-alt"></span>
+                            <small>Accounts</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="/Admin-Dashboard-Modern-master/mailbox.html">
+                            <span class="las la-envelope"></span>
+                            <small>Mailbox</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="revenue.html">
+                            <span><i class="fa fa-usd"></i></span>
+                            <small>Revenue</small>
+                        </a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                
+                <div class="header-menu">
+                    <label for="">
+                        <span class="las la-search"></span>
+                    </label>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-envelope"></span>
+                        <span class="notify">4</span>
+                    </div>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-bell"></span>
+                        <span class="notify">3</span>
+                    </div>
+                    
+                    <div class="user">
+                        <div class="bg-img" style="background-image: url(img/1.jpeg)"></div>
+                      
+                            <a href="#" class="log-out"><span class="las la-power-off" style="font-size: 1em;"> </span> Log out</a>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        
+        <main>
+            <div class="popup hidden">
+                <div class="confirm">
+                    <form >
+                       <h2>Do you want to ban this account ?</h2>
+                       <div class="f-button">
+                           <button type="button" onclick="popup()" id="ok">Yes</button>
+                           <button type="button" onclick="popup()">No</button>
+                       </div>
+                   </form>
+                </div>
+            </div>
+                
+            
+            
+            <div class="page-header">
+                <h1>Accounts</h1>
+                <small>Home / Accounts</small>
+            </div>
+            
+            <div class="page-content">
+               
+    
+
+
+                <div class="records table-responsive">
+
+                    <div class="record-header">
+                        <div class="add">
+                            <button class="btn-ins active" onclick="color_ins()">Instructors</button>
+                            <button class="btn-stu" onclick="color_stu()">Students</button>
+                        </div>
+
+                        <div class="browse">
+                           <input type="search" placeholder="Search" class="record-search">
+                            <select name="" id="">
+                                <option value="">Id</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <table width="100%" class=" t-instructors active" id="table-ins">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th><span class="las la-sort"></span> INSTRUCTOR</th>
+                                    <th><span class="las la-sort"></span> REGISTRATION DATE</th>
+                                    <th><span class="las la-sort"></span> NUMBER OF COURSES</th>
+                                    <th><span class="las la-sort"></span>RATE</th>
+                                    <th><span class="las la-sort"></span> ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                   
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Andrew Bruno</h4>
+                                                <small>bruno@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>23 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/1.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Exty Bruno</h4>
+                                                <small>exty@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>20 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/1.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Exty Bruno</h4>
+                                                <small>exty@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>32 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5034</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Andrew Bruno</h4>
+                                                <small>bruno@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>16 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#5035</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/1.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Exty Bruno</h4>
+                                                <small>exty@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>44 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/1.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Exty Bruno</h4>
+                                                <small>exty@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>45 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Andrew Bruno</h4>
+                                                <small>bruno@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>33 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                   
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/1.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Exty Bruno</h4>
+                                                <small>exty@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>14 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/1.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Exty Bruno</h4>
+                                                <small>exty@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-c"><b>10 </b>Courses</span>
+                                    </td>
+                                    <td class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" onclick="accept_btn()"></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                            <span class="las la-ellipsis-v"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+
+                        <table width="100%" class="t-students " id="table-stu" >
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    
+                                    <th><span class="las la-sort"></span> STUDENTS</th>
+                                    <th><span class="las la-sort"></span> REGISTRATION DATE</th>
+                                    <th><span class="las la-sort"></span> REGISTERED COURSES</th>
+                                    <th><span class="las la-sort"></span> ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Andrew Bruno</h4>
+                                                <small>bruno@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-regis"><b>35 </b>Courses</span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" ></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                         
+                                            <span class="las la-ellipsis-v"></span>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Andrew Bruno</h4>
+                                                <small>bruno@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-regis"><b>35 </b>Courses</span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" ></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                         
+                                            <span class="las la-ellipsis-v"></span>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Andrew Bruno</h4>
+                                                <small>bruno@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-regis"><b>35 </b>Courses</span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" ></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                         
+                                            <span class="las la-ellipsis-v"></span>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ID">#5033</td>
+                                    
+                                    <td class="d-account">
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                                            <div class="client-info">
+                                                <h4>Andrew Bruno</h4>
+                                                <small>bruno@crossover.org</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="res-date">
+                                        19 April, 2024
+                                    </td>
+                                    <td class="num-course">
+                                        <span class="number-regis"><b>35 </b>Courses</span>
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <span><i class="fa fa-comments" aria-hidden="true" ></i></span>
+                                            <span><i class="fa fa-ban" aria-hidden="true" onclick="popup()"></i></span>
+                                         
+                                            <span class="las la-ellipsis-v"></span>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            
+            </div>
+            
+        </main>
+       
+    </div>
+</body>
+<script>
+    
+    function color_ins()
+    {
+        const t_ins = document.querySelector('.t-instructors');
+        const t_stu = document.querySelector('.t-students');
+        const ins = document.querySelector('.btn-ins');
+        const stu = document.querySelector('.btn-stu');
+        ins.classList.add('active');
+        stu.classList.remove('active');
+
+        t_ins.classList.add('active');
+        t_stu.classList.remove('active');
+        console.log(t_ins)
+        console.log(t_stu)
+        
+    }
+    function color_stu()
+    {
+        const t_stu = document.querySelector('.t-students');
+        const t_ins = document.querySelector('.t-instructors');
+        const ins = document.querySelector('.btn-ins');
+        const stu = document.querySelector('.btn-stu');
+        t_stu.classList.add('active');
+        t_ins.classList.remove('active');
+       
+        stu.classList.add('active');
+        ins.classList.remove('active');
+        console.log(t_ins)
+        console.log(t_stu)
+    }
+
+    
+    var index1, index2;
+    const tabledel_1 = document.getElementById('table-ins');
+    const tabledel_2 = document.getElementById('table-stu');
+    const ban = document.getElementsByClassName('.fa-ban');
+    
+    for (var i =0; i<tabledel_1.rows.length; i++)
+    {
+       
+        tabledel_1.rows[i].cells[5].onclick = function()
+        {
+            index1 = this.parentElement.rowIndex;
+            console.log(index1);
+
+        }
+
+    }
+    for (var i =0; i<tabledel_2.rows.length; i++)
+    {
+       
+        tabledel_2.rows[i].cells[4].onclick = function()
+        {
+            index2 = this.parentElement.rowIndex;
+            console.log(index2);
+
+        }
+
+    }
+    
+    function popup(){
+        const popup = document.querySelector('.popup');
+        popup.classList.toggle('hidden');
+        var yes = document.getElementById('ok');
+        yes.onclick = function(){
+            if(index1>0)
+            {
+                console.log(tabledel_1.rows[index1])
+                tabledel_1.rows[index1].classList.add('row-deleted')
+                
+               setTimeout(() => {
+                 tabledel_1.deleteRow(index1);
+                  
+               }, 600);
+            }
+              if(index2>0)
+            {
+                console.log(tabledel_2.rows[index2])
+                tabledel_2.rows[index2].classList.add('row-deleted')
+                
+                setTimeout(() => {
+                 
+                  tabledel_2.deleteRow(index2);
+                }, 600);
+            }
+            popup.classList.toggle('hidden')
+            
+        }
+
+    }
+    
+    
+
+</script>
+<script>
+    alert('test case 1 ')
+</script>
+</html>

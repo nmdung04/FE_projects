@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Modern Admin Dashboard</title>
+  
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+--main-color: #4E9FE5;
+--color-dark: #34425A;
+--text-grey: #B0B0B0;
+}
+
+* {
+margin: 0;
+padding: 0;
+text-decoration: none;
+list-style-type: none;
+box-sizing: border-box;
+font-family: 'Merriweather', sans-serif;
+}
+
+#menu-toggle {
+display: none;
+}
+
+.sidebar {
+position: fixed;
+height: 100%;
+width: 165px;
+left: 0;
+bottom: 0;
+top: 0;
+z-index: 100;
+background: var(--color-dark);
+transition: left 300ms;
+}
+
+.side-header {
+box-shadow: 0px 5px 5px -5px rgb(0 0 0 /10%);
+background: var(--main-color);
+height: 60px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.side-header h3, side-head span {
+color: #fff;
+font-weight: 400;
+}
+
+.side-content {
+height: calc(100vh - 60px);
+overflow: auto;
+}
+
+/* width */
+.side-content::-webkit-scrollbar {
+width: 5px;
+}
+
+/* Track */
+.side-content::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px grey; 
+border-radius: 10px;
+}
+
+/* Handle */
+.side-content::-webkit-scrollbar-thumb {
+background: #b0b0b0; 
+border-radius: 10px;
+}
+
+/* Handle on hover */
+.side-content::-webkit-scrollbar-thumb:hover {
+background: #b30000; 
+}
+
+.profile {
+text-align: center;
+padding: 2rem 0rem;
+}
+
+.bg-img {
+background-repeat: no-repeat;
+background-size: cover;
+border-radius: 50%;
+background-size: cover;
+}
+
+.profile-img {
+height: 80px;
+width: 80px;
+display: inline-block;
+margin: 0 auto .5rem auto;
+border: 3px solid #899DC1;
+}
+
+.profile h4 {
+color: #fff;
+font-weight: 500;
+}
+
+.profile small {
+color: #899DC1;
+font-weight: 600;
+}
+
+.sidebar {
+overflow-y: auto;
+}
+
+.side-menu ul {
+text-align: center;
+}
+
+.side-menu a {
+display: block;
+padding: 1.2rem 0rem;
+}
+
+.side-menu a.active {
+background: #2B384E;
+}
+
+.side-menu a.active span, .side-menu a.active small {
+color: #fff;
+}
+
+.side-menu a span {
+display: block;
+text-align: center;
+font-size: 1.7rem;
+}
+
+.side-menu a span, .side-menu a small {
+color: #899DC1;
+}
+
+#menu-toggle:checked ~ .sidebar {
+width: 60px;
+}
+
+#menu-toggle:checked ~ .sidebar .side-header span {
+display: none;
+}
+
+#menu-toggle:checked ~ .main-content {
+margin-left: 60px;
+width: calc(100% - 60px);
+}
+
+#menu-toggle:checked ~ .main-content header {
+left: 60px;
+}
+
+#menu-toggle:checked ~ .sidebar .profile,
+#menu-toggle:checked ~ .sidebar .side-menu a small {
+display: none;
+}
+
+#menu-toggle:checked ~ .sidebar .side-menu a span {
+font-size: 1.3rem;
+}
+
+
+.main-content {
+margin-left: 165px;
+width: calc(100% - 165px);
+transition: margin-left 300ms;
+}
+
+header {
+position: fixed;
+right: 0;
+top: 0;
+left: 165px;
+z-index: 100;
+height: 60px;
+box-shadow: 0px 5px 5px -5px rgb(0 0 0 /10%);
+background: #fff;
+transition: left 300ms;
+}
+
+.header-content, .header-menu {
+display: flex;
+align-items: center;
+}
+
+.header-content {
+justify-content: space-between;
+padding: 0rem 1rem;
+}
+
+.header-content label:first-child span {
+font-size: 1.3rem;
+}
+
+.header-content label {
+cursor: pointer;
+}
+
+.header-menu {
+justify-content: flex-end;
+padding-top: .5rem;
+}
+
+.header-menu label,
+.header-menu .notify-icon {
+margin-right: 2rem;
+position: relative;
+}
+
+.header-menu label span,
+.notify-icon span:first-child {
+font-size: 1.3rem;
+}
+
+.notify-icon span:last-child {
+position: absolute;
+background: var(--main-color);
+height: 16px;
+width: 16px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+right: -5px;
+top: -5px;
+color: #fff;
+font-size: .8rem;
+font-weight: 500;
+}
+
+.user {
+display: flex;
+align-items: center;
+}
+
+.user div, .client-img {
+height: 40px;
+width: 40px;
+margin-right: 1rem;
+}
+
+.user span:last-child {
+display: inline-block;
+margin-left: .3rem;
+font-size: .8rem;
+}
+
+main {
+margin-top: 60px;
+}
+
+.page-header {
+padding: 1.3rem 1rem;
+background: #E9edf2;
+border-bottom: 1px solid #dee2e8;
+}
+
+.page-header h1, .page-header small {
+color: #74767d;
+}
+
+.page-content {
+padding: 1.3rem 1rem;
+background: #f1f4f9;
+height: 82vh;
+}
+
+.analytics {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-gap: 2rem;
+margin-top: .5rem;
+margin-bottom: 2rem;
+}
+
+.card {
+box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
+background: #fff;
+padding: 1rem;
+border-radius: 3px;
+}
+
+.card-head {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.card-head h2 {
+color: #333;
+font-size: 1.8rem;
+font-weight: 500;
+}
+
+.card-head span {
+font-size: 3.2rem;
+color: var(--text-grey);
+}
+
+.card-progress small {
+color: #777;
+font-size: .8rem;
+font-weight: 600;
+}
+
+.card-indicator {
+margin: .7rem 0rem;
+height: 10px;
+border-radius: 4px;
+background: #e9edf2;
+overflow: hidden;
+}
+
+.indicator {
+height: 10px;
+border-radius: 4px;
+}
+
+.indicator.one {
+background: #22baa0;
+}
+
+.indicator.two {
+background: #11a8c3;
+}
+
+.indicator.three {
+background: #f6d433;
+}
+
+.indicator.four {
+background: #f25656;
+}
+
+.records {
+box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
+background: #fff;
+border-radius: 3px;
+}
+
+.record-header {
+padding: 1rem;
+display: flex;
+position: relative;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+height: 100%;
+}
+
+.add, .browse {
+display: flex;
+align-items: center;
+}
+
+.add span {
+display: inline-block;
+margin-right: .6rem;
+font-size: .9rem;
+color: #666;
+}
+
+input, button, select {
+outline: none;
+}
+
+.add select, .browse input, .browse select {
+height: 35px;
+border: 1px solid #b0b0b0;
+border-radius: 3px;
+display: inline-block;
+width: 75px;
+padding: 0rem .5rem;
+margin-right: .8rem;
+color: #666;
+}
+
+.add button {
+background: #fff;
+color: var(--main-color);
+height: 37px;
+border-radius: 4px;
+padding: 0rem 1rem;
+border: 0.1em solid var(--text-grey);
+font-weight: 600;
+margin: 0.5rem 0.2rem;
+margin-right: 2em;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 4px ;
+/* border-bottom: var(--main-color); */
+
+}
+
+.browse input {
+width: 150px;
+}
+
+.browse select {
+width: 100px;
+}
+
+.table-responsive {
+width: 100%;
+overflow: auto;
+}
+
+
+.client {
+display: flex;
+align-items: center;
+}
+
+.client-img {
+margin-right: .5rem;
+border: 2px solid #b0b0b0;
+height: 45px;
+width: 45px;
+}
+
+.client-info h4 {
+color: #555;
+font-size: .95rem;
+}
+
+.client-info small {
+color: #777;
+}
+
+.actions span {
+display: inline-block;
+font-size: 1.5rem;
+margin-right: .5rem;
+margin-left: .5rem;
+}
+.log-out {
+color: #000;
+font-weight: 500;
+}
+.log-out:active{
+top:1px;
+scale: .85;
+transition: all 0.3s ease-in;
+}
+.fa-strar {
+text-shadow: 0 0 3px #5d5a5a;
+}
+.fa-star.checked{
+color:rgb(255, 174, 0);
+}
+.num-course b {
+color: var(--main-color);
+}
+.number-regis b {
+color: red;
+}
+.paid {
+display: inline-block;
+text-align: center;
+font-weight: 600;
+color: var(--main-color);
+background: #e5f8ed;
+padding: .5rem 1rem;
+border-radius: 20px;
+font-size: .8rem;
+width: 7rem;
+height: 2rem;
+}
+
+@media only screen and (max-width: 1200px) {
+.analytics {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media only screen and (max-width: 768px) {
+.analytics {
+grid-template-columns: 100%;
+}
+
+.sidebar {
+left: -165px;
+z-index: 90;
+}
+
+header {
+left: 0;
+width: 100%;
+}
+
+.main-content {
+margin-left: 0;
+width: 100%;
+}
+
+#menu-toggle:checked ~ .sidebar {
+left: 0;
+}
+
+#menu-toggle:checked ~ .sidebar {
+width: 165px;
+}
+
+#menu-toggle:checked ~ .sidebar .side-header span {
+display: inline-block;
+}
+
+#menu-toggle:checked ~ .sidebar .profile,
+#menu-toggle:checked ~ .sidebar .side-menu a small {
+display: block;
+}
+
+#menu-toggle:checked ~ .sidebar .side-menu a span {
+font-size: 1.7rem;
+}
+
+#menu-toggle:checked ~ .main-content header {
+left: 0px;
+}
+
+table {
+width: 900px;
+}
+}
+
+
+.progress-bar {
+height: 6px;
+width:100%;
+border-radius: 5px;
+margin-top: 2px;
+background: rgba(0, 0, 0, 0.1);
+
+}
+.progress-per {
+position: relative;
+background: #11a8c3;
+display: block;
+width: 90%;
+height: 100%;
+border-radius: 3px;
+}
+
+.tooltip {
+position: absolute;
+top:-1.2rem;
+font-size: 0.8rem;
+}
+
+
+::-webkit-scrollbar {
+width: 8px;
+height: 5px;
+}
+::-webkit-scrollbar-thumb{
+background-image: linear-gradient( to right, #76cad9,#155799 );
+border-radius: 9px;
+}
+
+canvas {
+padding: 30px 50px;
+margin: 20px 50px ;
+width: 95% !important;
+height: 90vh !important;
+
+
+}
+.canvasjs-chart-container{
+margin: 10px 20px ;
+
+}
+.canvasjs-chart-credit{
+display: none;
+visibility: hidden;
+}
+.record h2 {
+font-size :2rem;
+font-weight: bold;
+color: #155799;
+
+}
+.record img {
+width: 50%;
+height: 50%;
+object-fit: contain;
+padding: 20px 10px;
+}
+.record {
+    position: relative;
+    padding: 1rem;
+display: flex;
+position: relative;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+height: 50vh;
+}
+
+.fa-long-arrow-right{
+    margin-left: 10px;
+}
+.animated-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 36px;
+    border: 4px solid;
+    border-color: transparent;
+    font-size: 16px;
+    
+    border-radius: 100px;
+    font-weight: 600;
+    color: #1f387e;
+    box-shadow: 0 0 0 2px #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button svg {
+    position: absolute;
+    width: 24px;
+    fill: #1f387e;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button .arr-1 {
+    right: 16px;
+  }
+  
+  .animated-button .arr-2 {
+    left: -25%;
+  }
+  
+  .animated-button .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #c5e5e4;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button .text {
+    position: relative;
+    z-index: 1;
+    
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button:hover {
+    box-shadow: 0 0 0 12px transparent;
+    color: #212121;
+    border-radius: 12px;
+  }
+  
+  .animated-button:hover .arr-1 {
+    right: -25%;
+  }
+  
+  .animated-button:hover .arr-2 {
+    left: 16px;
+  }
+  
+  .animated-button:hover .text {
+    transform: translateX(12px);
+  }
+  
+  .animated-button:hover svg {
+    fill: #1f387e;
+  }
+  
+  .animated-button:active {
+    scale: 0.95;
+    box-shadow: 0 0 0 4px rgb(119, 153, 248);
+  }
+  
+  .animated-button:hover .circle {
+    width: 220px;
+    height: 220px;
+    opacity: 1;
+  }
+.animated-button a{
+    width: 100%;
+    padding: 20px 10px;
+}
+  
+
+
+    </style>
+    
+      
+</head>
+
+<body >
+   <input type="checkbox" id="menu-toggle">
+    <div class="sidebar">
+        <div class="side-header">
+            <h3><i class="fas fa-book-reader mr-5"></i><span>  EDUKATE</span></h3>
+        </div>
+        
+        <div class="side-content">
+            <div class="profile">
+                <div class="profile-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                <h4>David Green</h4>
+                <small>Art Director</small>
+            </div>
+
+            <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="/Admin-Dashboard-Modern-master/index.html" >
+                            <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="/Admin-Dashboard-Modern-master/account.html" >
+                            <span class="las la-user-alt"></span>
+                            <small>Accounts</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="#" class="active">
+                            <span class="las la-envelope"></span>
+                            <small>Mailbox</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="/Admin-Dashboard-Modern-master/mailbox.html" >
+                            <span><i class="fa fa-usd"></i></span>
+                            <small>Revenue</small>
+                        </a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                
+                <div class="header-menu">
+                    <label for="">
+                        <span class="las la-search"></span>
+                    </label>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-envelope"></span>
+                        <span class="notify">4</span>
+                    </div>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-bell"></span>
+                        <span class="notify">3</span>
+                    </div>
+                    
+                    <div class="user">
+                        <div class="bg-img" style="background-image: url(img/1.jpeg)"></div>
+                      
+                            <a href="#" class="log-out"><span class="las la-power-off" style="font-size: 1em;"> </span> Log out</a>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        
+        <main>
+            
+                
+            
+            
+            <div class="page-header">
+                <h1>MailBox</h1>
+                <small>Home / Mailbox</small>
+            </div>
+            
+            <div class="page-content">
+               
+    
+
+
+                <div class="records table-responsive">
+
+                    <div class="record">
+                        <img src="https://mailmeteor.com/logos/assets/PNG/Gmail_Logo_256px.png" alt="">
+                        <h2> All Contact Form were send to Gmail </h2>
+                        <!-- <img src="https://static.cdnlogo.com/logos/g/24/gmail-icon.svg" alt=""> -->
+                        <button class="animated-button" >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                              <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                              ></path>
+                            </svg>
+                            <span class="text"><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">C H E C K</a></span>
+                            <span class="circle"></span>
+                            
+                          </button>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            
+            
+        </main>
+       
+    </div>
+    
+</body>
+
+
+   
+
+</html>
+
